@@ -3,113 +3,120 @@
 {% block content %}
 
 <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <h1>Kuchu Muchu</h1>
-    </div>
-      <div class="hero-content">
-      <p>The crystal palace of shopping for the elite</p>
-    </div>
-        <div class="scroll-down">
-            <a href="#main"><i class="fas fa-angle-down"></i></a>
-          </div>>
-  </section>
-  
-  
-  
-  
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Kuchu Muchu</h1>
+  </div>
+  <div class="hero-content">
+    <p>The crystal palace of shopping for the elite</p>
+  </div>
+  <div class="scroll-down">
+    <a href="#main"><i class="fas fa-angle-down"></i></a>
+  </div>
+</section>
+
 
 <section id="main"></section>
-      <center><h1>Browse By Category</h1></center>
-        {% for category in categoryData %}
-        <hr>
-            <div class="marquee">
-                <div class="marquee-text">
-                    <a class="no-underline no-color" href="{{ url_for('displayCategory', categoryId=category.category_id) }}">{{ category.category_name }} {{ category.category_name }} {{ category.category_name }} {{ category.category_name }} {{ category.category_name }} {{ category.category_name }}</a>
-                </div>
-            </div>
-        {% endfor %}
-        <hr>
+<center>
+  <h1>Browse By Category</h1>
+</center>
+{% for category in categoryData %}
+  <hr>
+  <div class="marquee">
+    <div class="marquee-text">
+      <a class="no-underline no-color" href="{{ url_for('displayCategory', categoryId=category.category_id) }}">{{
+        category.category_name }} {{ category.category_name }} {{ category.category_name }} {{ category.category_name }}
+        {{ category.category_name }} {{ category.category_name }}</a>
+    </div>
+  </div>
+{% endfor %}
 
 
-        <div class="container">
-            <h1>New Arrivals</h1>
-            <div class="card-stack">
-              {% set products = productData|list %}
-              {% if products and products|length > 0 %}
-                {% for product in products[:8] %}
-                  <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" src="{{ url_for('static', filename='uploads/' + product.product_image) }}" alt="{{ product.product_name }}">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ product.product_name }}</h5>
-                      <p class="card-text">{{ product.price }} PKR</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <a href="{{ url_for('productDescription', productId=product.product_id) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-              {% else %}
-                <p>No products available</p>
-              {% endif %}
+<hr>
+<div class="container">
+  <h1>New Arrivals</h1>
+  <div class="card-stack">
+    {% set products = productData|list %}
+    {% if products and products|length > 0 %}
+      {% for product in products[:8] %}
+        <div class="card mb-4 shadow-sm">
+          <img class="card-img-top" src="{{ url_for('static', filename='uploads/' + product.product_image) }}"
+            alt="{{ product.product_name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.product_name }}</h5>
+            <p class="card-text">{{ product.price }} PKR</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{{ url_for('productDescription', productId=product.product_id) }}"
+                  class="btn btn-sm btn-outline-secondary">View</a>
+              </div>
             </div>
           </div>
-          
-          
-          <div class="container">
-            <h1>Hot Deals</h1>
-            <div class="card-stack">
-              {% set products = productData|list %}
-              {% if products and products|length > 0 %}
-                {% for product in productData[:8]|sort(attribute='discount',reverse=True) %}
-                  <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" src="{{ url_for('static', filename='uploads/' + product.product_image) }}" alt="{{ product.product_name }}">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ product.product_name }}</h5>
-                      <p class="card-text">
-                        <del>{{ product.price }} PKR</del> 
-                        {{ product.price }} PKR ({{ product.discount }}% off)
-                    </p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <a href="{{ url_for('productDescription', productId=product.product_id) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-              {% else %}
-                <p>No products available</p>
-              {% endif %}
-            </div>
-          </div>
-               
-
-          <section id="contact">
-            <div class="container">
-              <h1>About Us</h1>
-            </div>
-            <div class="contact container">
-            <div class="map">
-                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=72.62125968933107%2C34.06261611125754%2C72.6614284515381%2C34.08632610069816&amp;layer=mapnik"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-                <div class="form">
-                    <div class="form-txt">
-                        <h4>Our Story</h4>
-                        <span>At Kucho Mucho, we are passionate about style, elegance, and sophistication. Our team of experts scours the globe to source the finest quality products, ensuring that every item on our platform is of the highest standard. We believe that every product we offer should embody 
-                          the values of quality, luxury, and exclusivity, which ensure that shoppers love our meth..od of shopping.</span>
-                        <br><br><br>
-                          <h4>Our Office</h4>
-                        <p>GIKI, Topi, Swabi, Pakistan<br>+92 312-314-0958</p>
-                    </div>
-                </div>
         </div>
-        </section>
+      {% endfor %}
+    {% else %}
+      <p>No products available</p>
+    {% endif %}
+  </div>
+</div>
 
-      
-  
+
+<div class="container">
+  <h1>Hot Deals</h1>
+  <div class="card-stack">
+    {% set products = productData|list %}
+    {% if products and products|length > 0 %}
+      {% for product in productData[:8]|sort(attribute='discount',reverse=True) %}
+        <div class="card mb-4 shadow-sm">
+          <img class="card-img-top" src="{{ url_for('static', filename='uploads/' + product.product_image) }}"
+            alt="{{ product.product_name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.product_name }}</h5>
+            <p class="card-text">
+              <del>{{ product.price }} PKR</del>
+              {{ product.price }} PKR ({{ product.discount }}% off)
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{{ url_for('productDescription', productId=product.product_id) }}"
+                  class="btn btn-sm btn-outline-secondary">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No products available</p>
+    {% endif %}
+  </div>
+</div>
+
+
+<section id="contact">
+  <div class="container">
+    <h1>About Us</h1>
+  </div>
+  <div class="contact container">
+    <div class="map">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=72.62125968933107%2C34.06261611125754%2C72.6614284515381%2C34.08632610069816&amp;layer=mapnik"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="form">
+      <div class="form-txt">
+        <h4>Our Story</h4>
+        <span>At Kuchu Muchu, we are passionate about style, elegance, and sophistication. Our team of experts scours
+          the globe to source the finest quality products, ensuring that every item on our platform is of the highest
+          standard. We believe that every product we offer should embody
+          the values of quality, luxury, and exclusivity, which ensure that shoppers love our meth..od of
+          shopping.</span>
+        <br><br><br>
+        <h4>Our Office</h4>
+        <p>GIKI, Topi, Swabi, Pakistan<br>+92 312-314-0958</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
-

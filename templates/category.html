@@ -5,25 +5,23 @@
 <div class="container">
   <h1>{{ category.category_name }}</h1>
   <p>{{ category.description }}</p>
-
   <div class="card-stack">
     {% for product in products %}
       <div class="card mb-4 shadow-sm">
-        <img class="card-img-top" src="{{ url_for('static', filename='uploads/' + product.product_image) }}" alt="{{ product.product_name }}">
+        <img class="card-img-top" src="{{ url_for('static', filename='uploads/' + product.product_image) }}"
+          alt="{{ product.product_name }}">
         <div class="card-body">
           <h5 class="card-title">{{ product.product_name }}</h5>
           <p class="card-text">${{ product.price }}</p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <a href="{{ url_for('productDescription', productId=product.product_id) }}" class="btn btn-sm btn-outline-secondary">View</a>
+              <a href="{{ url_for('productDescription', productId=product.product_id) }}"
+                class="btn btn-sm btn-outline-secondary">View</a>
             </div>
           </div>
         </div>
       </div>
     {% endfor %}
   </div>
-  
-
+</div>
 {% endblock %}
-
-

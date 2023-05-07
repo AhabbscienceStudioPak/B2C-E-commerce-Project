@@ -6,29 +6,30 @@
   <div class="productinfo animate">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{ url_for('static', filename='uploads/' + productdata.product_image) }}" alt="{{ productdata.product_name }}" class="img-fluid">
+        <img src="{{ url_for('static', filename='uploads/' + productdata.product_image) }}"
+          alt="{{ productdata.product_name }}" class="img-fluid">
       </div>
       <div>
         <h1>{{ productdata.product_name }}</h1>
         <h2>{{ productdata.price }} PKR</h2>
         <p>{{ productdata.product_description }}</p>
         {% if productdata.quantity_pu > 0 %}
-        <p class="instock">In Stock</p>
+          <p class="instock">In Stock</p>
         {% else %}
-        <p class="outofstock">Out of Stock</p>
+          <p class="outofstock">Out of Stock</p>
         {% endif %}
         <div class="form-group">
-            <form method="POST" action="{{ url_for('addToCart', productId=productdata.product_id) }}">
-              <label for="quantity">Quantity:</label>
-              <input type="number" name="quantity" id="quantity" class="form-control" min="1" value="1">
-              <br><br><div>
+          <form method="POST" action="{{ url_for('addToCart', productId=productdata.product_id) }}">
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" class="form-control" min="1" value="1">
+            <br><br>
+            <div>
               <button type="submit" class="btn btn-primary">Add to Cart</button>
             </div>
-            </form>
-          </div>
-          
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 {% endblock %}
