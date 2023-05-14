@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, flash, render_template, request, session, redirect, url_for, abort
-from strgen import StringGenerator as SG
+#from strgen import StringGenerator as SG
 from sqlalchemy import create_engine
 from sqlalchemy import Column, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -36,7 +36,7 @@ def allowed_file(filename):
 
 # configure app to enable it to interact with your database
 # format: 'postgresql://user:password@localhost/database name'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Nauman:pgadmin@localhost:5432/b2c_ecommsite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:pgadmin@localhost:5432/ecommsite'
 
 db = SQLAlchemy(app)
 
@@ -212,12 +212,12 @@ def signup():
 
         if not (fn and ln and usr and cno and pwd):
             error = "Failure: Credentials are not filled in properly."
-            return render_template('createuser.html', error)
+            return render_template('register.html', error)
 
         usr_exists = Customer.query.filter_by(loginid=usr).first()
         if usr_exists:
             error = "Failure: Username already exists"
-            return render_template('createuser.html', error)
+            return render_template('register.html', error)
 
         c_id = str(uuid.uuid4())[:8]
         new_customer = Customer(customer_id=c_id, first_name=fn,
@@ -437,9 +437,11 @@ def success():
 
     # Update cart and commit changes
     cart = Cart.query.filter_by(cart_id=cart_id).first()
+    product= Product.query.filter_by()
     cart.nop = 0
     cart.total_price = 0
     db.session.commit()
+
 
     # Create an Aboutorder entry
     order = Order(customer_id=cust_id,

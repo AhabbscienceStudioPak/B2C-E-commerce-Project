@@ -1,3 +1,19 @@
+drop table admin cascade;
+drop table billinginfo cascade;
+drop table cart cascade;
+drop table cart_products cascade;
+drop table category cascade;
+drop table customer cascade;
+drop table order_items cascade;
+drop table orderdetails cascade;
+drop table orders cascade;
+drop table personal_info cascade;
+drop table product CASCADE;
+drop table shipper cascade;
+drop table supplier cascade;
+drop table trackinginfo cascade;
+drop table aboutorder cascade;
+
 CREATE TABLE admin (
     admin_id VARCHAR(20) PRIMARY KEY,
     first_name VARCHAR(20),
@@ -111,4 +127,3 @@ CREATE TABLE order_items (
     PRIMARY KEY (order_id, product_id)
 );
 
-UPDATE product SET product_image = 'ExampleProduct.jpg'
