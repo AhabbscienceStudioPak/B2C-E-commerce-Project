@@ -43,6 +43,16 @@ db = SQLAlchemy(app)
 # Database relational models based on flask-SQLAlchemy ORM syntax
 
 
+class MyView(db.Model):
+    __tablename__ = 'myview'
+
+    product_name = db.Column(db.String(20), primary_key = True)
+    quantity_pu = db.Column(db.Integer)
+    supplier_id= db.Column(db.String(20))
+    first_name = db.Column(db.String(20))
+    last_name  = db.Column(db.String(20))
+
+
 class Admin(db.Model):
     __tablename__ = 'admin'
 
@@ -165,6 +175,13 @@ class Supplier(db.Model):
 
 # set secret key for the app in order to use sessions
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+
+
+@app.route("/view")
+def view():
+    Data = db.session.query(MyView).all()
+    return render_template('view.html', AllData=Data)
 
 
 @app.route('/login', methods=['GET', 'POST'])
