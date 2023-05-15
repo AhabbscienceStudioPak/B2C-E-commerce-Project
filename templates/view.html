@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Products and their suppliers {{num}}</h1>
+    <ul>
+    {% set datas = AllData|list %}
+      {% for data in datas[:8] %}
+        <li> Name  |   Supplier   |   Name   |   Quantity</li>
+        <li> {{ data.product_name}} | {{ data.supplier_id}} | {{data.first_name}} {{data.last_name}} | data.quantity_pu</li>
+    </ul>
+      {% endfor %}
+</div>
+
+{% endblock %}
