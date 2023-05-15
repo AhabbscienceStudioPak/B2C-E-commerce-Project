@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Product{% endblock %}
 
 {% block content %}
 
@@ -12,6 +13,7 @@
       <div>
         <h1>{{ productdata.product_name }}</h1>
         <h2>{{ productdata.price }} PKR</h2>
+        <h3>{{ productdata.unit_weight }} gram per</h3>
         <p>{{ productdata.product_description }}</p>
         {% if productdata.quantity_pu > 0 %}
           <p class="instock">In Stock</p>
