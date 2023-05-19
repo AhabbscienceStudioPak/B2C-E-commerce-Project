@@ -31,8 +31,8 @@ conn = psycopg2.connect(
 
 #stripe_publishable_key = os.getenv('STRIPE_PUBLISHABLE_KEY')
 #stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
-stripe_public_key = "pk_test_51N8I8nJxSZeiJ2ga3xrPHzE1PIdnbjZmSZMVjfeWDxxlZZJqGREZR5VgiTMeP2o7yRSd0CF9ahdWLwsCKo0Q6eN600RlJxE6iw"
-stripe.api_key = "sk_test_51N8I8nJxSZeiJ2gahluipDbK2VjiKT3pZbjQ3vLEiHP5mB8ByI1bV1Ki8tpN0mLua8FWn21jAM62bFsUkGQ8HDDs00hF6EHgE5"
+stripe_public_key = <stripe_public_key>
+stripe.api_key = <stripe_private_key>
 
 
 
