@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<center><h2>All Orders</h2></center>
+<table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Shipped Date</th>
+        <th>Shipper ID</th>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Address</th>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order_info in orders %}
+      <tr>
+        <td>{{ order_info.order_id }}</td>
+        <td>{{ order_info.order_date }}</td>
+        <td>{{ order_info.shipped_date }}</td>
+        <td>{{ order_info.shipper_id }}</td>
+        <td>{{ order_info.customer_id }}</td>
+        <td>{{ order_info.customer_name }}</td>
+        <td>{{ order_info.address }}</td>
+        <td>{{ order_info.product_id }}</td>
+        <td>{{ order_info.product_name }}</td>
+        <td>{{ order_info.unit_price }}</td>
+        <td>{{ order_info.quantity }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>  
+</body>
+</html>

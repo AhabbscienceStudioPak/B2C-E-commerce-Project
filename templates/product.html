@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}Product{% endblock %}
+
+{% block title %}{{ productdata.product_name }}{% endblock %}
 
 {% block content %}
 
@@ -7,31 +8,34 @@
   <div class="productinfo animate">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{ url_for('static', filename='uploads/' + productdata.product_image) }}"
-          alt="{{ productdata.product_name }}" class="img-fluid">
+        <img src="{{ url_for('static', filename='uploads/' + productdata.product_image) }}" alt="{{ productdata.product_name }}" class="img-fluid">
       </div>
       <div>
+        <span><a href="{{ url_for('displayCategory', categoryId=category.category_id) }}"  class="category-link">{{ category.category_name }}</a></span>
         <h1>{{ productdata.product_name }}</h1>
         <h2>{{ productdata.price }} PKR</h2>
-        <h3>{{ productdata.unit_weight }} gram per</h3>
-        <p>{{ productdata.product_description }}</p>
+        <h3>Product information</h3>
+        <p>Unit weight: {{ productdata.unit_weight }}g<br>
+        {{ productdata.product_description }}</p>
         {% if productdata.quantity_pu > 0 %}
-          <p class="instock">In Stock</p>
+        <p class="instock">In Stock</p>
         {% else %}
-          <p class="outofstock">Out of Stock</p>
+        <p class="outofstock">Out of Stock</p>
         {% endif %}
         <div class="form-group">
-          <form method="POST" action="{{ url_for('addToCart', productId=productdata.product_id) }}">
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" id="quantity" class="form-control" min="1" value="1">
-            <br><br>
-            <div>
-              <button type="submit" class="btn btn-primary">Add to Cart</button>
-            </div>
+          <form method="POST" action="{{ url_for('addToWishlist', productId=productdata.product_id) }}">
+            <button type="submit" class="rightbutton">Wishlist</button>
           </form>
         </div>
-      </div>
+            <form method="POST" action="{{ url_for('addToCart', productId=productdata.product_id) }}">
+              <label for="quantity">Quantity:</label>
+              <input type="number" name="quantity" id="quantity" class="form-control" min="1" value="1">
+              <br><br>
+              <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+          
     </div>
   </div>
 </div>
+
 {% endblock %}

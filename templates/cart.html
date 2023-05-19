@@ -3,39 +3,42 @@
 {% block content %}
 
 <div class="container">
-  <div class="cart-title">
-    <h2>My Shopping Cart</h2>
-    {% if noOfItems <= 0 %} <h3>No items in your cart yet</h3>
-    {% else %}
-  </div>
-      <div class="cart-items">
-        {% for product, quantity in products %}
-          <div class="cart-item">
-            <img src="{{ product.image_url }}" class="img-responsive" alt="{{ product.name }}">
-            <div class="product-details">
-              <div class="product-title">
-                <h3>{{ product.product_name }}</h3>
-              </div>
-              <p>Product ID: {{ product.product_id }} </p>
-              <p>Unit Price: {{ product.price }} PKR</p>
-              <p>Quantity: {{ quantity }}</p>
-              <p>Subtotal: {{ quantity * product.price }} PKR</p>
-            </div>{{product.product_id}}
-            <form action="{{ url_for('removeFromCart') }}" method="POST">
-              <input type="hidden" name="productId" value="{{ product.product_id }}">
-              <button type="submit" class="btn btn-danger">Remove</button>
-            </form>
-          </div>
-        {% endfor %}
-      
-        <div class="cart-summary">
-          <p>Total Items: {{ noOfItems }}</p>
-          <p>Total: {{ totalPrice }} PKR</p>
-          <form method="GET" action="{{ url_for('checkout') }}">
-            <button class="checkout" type="submit">Checkout</button>
-          </form>
-        </div>
-      </div>
-  {% endif %}
+<div class="cart-title">
+<h2>My Shopping Cart</h2>
+{% if noOfItems <= 0 %}
+  <h3>No items in your cart yet</h3>
+{% else %}
 </div>
+  <div class="cart-items">
+    {% for product in products %}
+      <div class="cart-item">
+        <img src="{{ url_for('static', filename='uploads/' + product.product_image) }}" class="img-responsive" alt="{{ product.name }}" />
+        <div class="product-details">
+            <div class="product-title"><h3>{{ product.product_name }}</h3></div>
+            <p>Product ID: {{ product.product_id }} </p>
+          <p>Unit Price: {{ product.price }} PKR</p>
+          <p>Quantity: {{ product.quantity }}</p>
+          <p>Subtotal: {{ product.quantity * product.price }} PKR</p>
+        </div>
+        <form action="{{ url_for('removeFromCart') }}" method="POST">
+          <input type="hidden" name="productId" value="{{ product.product_id }}">
+          <button type="submit" class="btn btn-danger">Remove</button>
+        </form>        
+      </div>
+    {% endfor %}
+
+  <div class="cart-summary">
+    <p>Total Items: {{ noOfItems }}</p>
+    <p>Total: {{ totalPrice }} PKR</p>
+    <form method="GET" action="{{ url_for('checkout') }}">
+      <button class="checkout" type="submit">Checkout</button>
+    </form>
+  </div></div>
+{% endif %}
+
+  
+
+
 {% endblock %}
+
+

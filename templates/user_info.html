@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+  <br>
+  <div class="form-container">
+    <h1>User Information</h1>
+    <p>Customer ID: {{ customer.customer_id }}</p>
+    <p>First Name: {{ customer.first_name }}</p>
+    <p>Last Name: {{ customer.last_name }}</p>
+    <p>Login ID: {{ customer.loginid }}</p>
+    <p>Contact Number: {{ customer.contact_num }}</p>
+  </div>
+  <br>
+  {% endblock %}
+</html>

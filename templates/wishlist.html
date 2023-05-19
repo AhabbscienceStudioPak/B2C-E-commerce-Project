@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Wishlist{% endblock %}
+{% block content %}
+
+<div class="container">
+<div class="cart-title">
+<h2>Wishlist</h2>
+{% if noOfItems <= 0 %}
+  <h3>No items in your wishlist yet</h3>
+{% else %}
+</div>
+  <div class="cart-items">
+    {% for product, quantity in products %}
+      <div class="cart-item">
+        <img src="{{ url_for('static', filename='uploads/' + product.product_image) }}" class="img-responsive" alt="{{ product.name }}" />
+        <div class="product-details">
+            <div class="product-title"><h3>{{ product.product_name }}</h3></div>
+            <p>Product ID: {{ product.product_id }} </p>
+          <p>Unit Price: {{ product.price }} PKR</p>
+        </div>
+        <form action="{{ url_for('addToCart', productId=product.product_id) }}" method="POST">
+            <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" class="form-control" min="1" value="1">
+          <button type="submit" class="btn btn-danger">Add To Cart</button>
+        </form>        
+      </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+  
+
+
+{% endblock %}

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Checkout{% endblock %}
 {% block content %}
-<h1>Checkout</h1>
-<form action="{{ url_for('checkout') }}" method="POST">
-  <!--<div>
+<div class="container">
+  <h1>Checkout</h1>
+  <form action="{{ url_for('checkout') }}" method="POST">
+    <!--<div>
       <label for="shipping_name">Shipping Name:</label>
       <input type="text" id="shipping_name" name="shipping_name" required>
     </div>
@@ -29,30 +30,39 @@
     </div>
 -->
   <h2>Order Summary</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in cart_items %}
-      <tr>
-        <td>{{ item.product_name }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.price }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="2">Total:</td>
-        <td>{{ totalPrice }}</td>
-      </tr>
-    </tfoot>
-  </table>
-  <input type="submit" value="Pay with Card">
-</form>
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in cart_items %}
+          <tr>
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price * product.quantity }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">Total:</td>
+          <td>{{ totalPrice }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div style="text-align: left;">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+    </div>
+    <div style="text-align: right;">
+    <input class="checkout" type="submit" value="Pay with Card through Stripe">
+  </form>
+</div></div>
 {% endblock %}
+
+
+

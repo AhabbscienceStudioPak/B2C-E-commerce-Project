@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,109 +27,108 @@
         Kuchu Muchu
         <p>Admin Dashboard</p>
       </div>
-      <ul class="nano-content">
-        <li><a href="#add_product" onclick="toggleSection('add_product')">Add Product</a></li>
-        <li><a href="#edit_product" onclick="toggleSection('edit_product')">Edit Product</a></li>
-        <li><a href="#remove_product" onclick="toggleSection('remove_product')">Remove Product</a></li>
-      </ul>
-    </div>
-  </aside>
-
+    <ul class="nano-content">
+    <li><a href="#add_product" onclick="toggleSection('add_product')">Add Product</a></li>
+    <li><a href="#edit_product" onclick="toggleSection('edit_product')">Edit Product</a></li>
+    <li><a href="#remove_product" onclick="toggleSection('remove_product')">Remove Product</a></li>
+    <li><a href="/orders">Show Orders</a></li>
+    <li><a href="/analytics">Analytics</a></li>
+  </ul></div></aside>
 
   <div id="" class="dashboard-section">
-    <div class="admin_container">
-      <h1>Welcome to the Admin Portal</h1>
-      <p>The admin portal allows you to add, edit, and remove items, as well as view analytics data.
-        Adding items involves filling out a form with the necessary information and uploading any relevant files or
-        images.
-        Editing items involves updating information such as price or description, and deleting items removes them from
-        public view
-        and prevents user access. The analytics feature provides administrators with valuable insights into
-        system performance, user behavior, and other relevant metrics through visualizations such as graphs or charts.
-      </p>
+  <div class="admin_container">
+    <h1>Welcome to the Admin Portal</h1>
+    <p>The admin portal allows you to add, edit, and remove items, as well as view analytics data. 
+      Adding items involves filling out a form with the necessary information and uploading any relevant files or images. 
+      Editing items involves updating information such as price or description, and deleting items removes them from public view 
+      and prevents user access. The analytics feature provides administrators with valuable insights into 
+      system performance, user behavior, and other relevant metrics through visualizations such as graphs or charts.</p>
+    
+      <div id="sales-graph"></div>
+
     </div>
+
+      
+
   </div>
 
 
   <div id="add_product" class="dashboard-section" style="display: none;">
     <div class="form-container">
-      <h2>Add Product</h2>
-      <form action="/add_product" method="POST" enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br><br>
-
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
-        <br><br>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" min="0" step="1" required>
-        <br><br>
-
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" min="0" step="1" required>
-        <br><br>
-
-        <label for="category">Category:</label>
-        <select id="category" name="category">
-          <option value="C001">Electronics</option>
-          <option value="C002">Fashion</option>
-          <option value="C003">Books</option>
-        </select>
-        <br><br>
-
-        <label for="discount">Discount (0 - 1):</label>
-        <input type="number" id="discount" name="discount" min="0" max="1" step="0.1">
-        <br><br>
-
-        <label for="image">Image:</label>
-        <input type="file" id="image" name="image" accept="image/*">
-        <br><br>
-
-        <button type="submit">Add Product</button>
-      </form>
-    </div>
-  </div>
+    <h2>Add Product</h2>
+    <form action="/add_product" method="POST" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br><br>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
+      <br><br>
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" min="0" step="1" required>
+      <br><br>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="0" step="1" required>
+      <br><br>
+      <label for="category">Category:</label>
+      <select id="category" name="category">
+        <option value="C001">Electronics</option>
+        <option value="C002">Fashion</option>
+        <option value="C003">Books</option>
+      </select>
+      <br><br>
+      <label for="weight">Weight in grams:</label>
+      <input type="number" id="weight" name="weight">
+      <br><br>
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image" accept="image/*">
+      <br><br>
+      <button type="submit">Add Product</button>
+    </form>
+  </div></div>
 
   <div id="edit_product" class="dashboard-section" style="display: none;">
     <div class="form-container">
-      <h2>Edit Product</h2>
-      <form action="/edit_product" method="POST">
-        <label for="product_id">Product ID:</label>
-        <input type="text" id="product_id" name="product_id" required>
-        <br><br>
-
-        <label for="new_name">New Name:</label>
-        <input type="text" id="new_name" name="new_name">
-        <br><br>
-
-        <label for="new_description">New Description:</label>
-        <textarea id="new_description" name="new_description"></textarea>
-        <br><br>
-
-        <label for="new_price">New Price:</label>
-        <input type="number" id="new_price" name="new_price" min="0" step="0.01">
-        <br><br>
-
-        <button type="submit">Edit Product</button>
-      </form>
-    </div>
-  </div>
+    <h2>Edit Product</h2>
+    <form action="/edit_product" method="POST">
+      <label for="product_id">Product ID:</label>
+      <input type="text" id="product_id" name="product_id" required>
+      <br><br>
+      <label for="new_name">New Name:</label>
+      <input type="text" id="new_name" name="new_name">
+      <br><br>
+      <label for="new_description">New Description:</label>
+      <textarea id="new_description" name="new_description"></textarea>
+      <br><br>
+      <label for="new_price">New Price:</label>
+      <input type="number" id="new_price" name="new_price" min="0" step="0.01">
+      <br><br>
+      <button type="submit">Edit Product</button>
+    </form>
+  </div></div>
 
   <div id="remove_product" class="dashboard-section" style="display: none;">
     <div class="form-container">
-      <h2>Remove Product</h2>
-      <form action="/remove_product" method="POST">
-        <label for="product_id">Product ID:</label>
-        <input type="text" id="product_id" name="product_id" required>
-        <br><br>
+    <h2>Remove Product</h2>
+    <form action="/remove_product" method="POST">
+      <label for="product_id">Product ID:</label>
+      <input type="text" id="product_id" name="product_id" required>
+      <br><br>
+      <button type="submit">Remove Product</button>
+    </form>
+  </div></div>
 
-        <button type="submit">Remove Product</button>
-      </form>
-    </div>
+        
+  
   </div>
-  <br>
-</body>
 
+  <br>
+
+
+<!-- Plotly Dash library -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!-- Plotly Dash app -->
+<script src="{{ url_for('static', filename='js/dash.js') }}"></script>
+
+</body>
 </html>

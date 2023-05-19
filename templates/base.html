@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#333">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
   <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css">-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> 
   <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
 </head>
 
 <body>
+  
   <div class="nav">
     <input type="checkbox" id="nav-check">
     <div class="nav-header">
@@ -28,87 +30,140 @@
         <span></span>
       </label>
     </div>
-
+    
     <div class="nav-links">
       <a href="/" target="_blank">Home</a>
       <a href="/" target="_blank">Shop</a>
       <a href="/cart" target="_blank">Cart</a>
       {% if session.get('username') %}
-        <a>{{ session['username'] }}</a>
-        <a href="{{ url_for('logout') }}">Log out</a>
-      {% else %}
-        <a href="{{ url_for('signup') }}">Sign up</a>
-        <a href="{{ url_for('login') }}">Log in</a>
-      {% endif %}
+      <a href="/user_info/{{ session['username'] }}">{{ session['username'] }}</a>
+      <a href="{{ url_for('logout') }}">Log out</a>
+    {% else %}
+      <a href="{{ url_for('signup') }}">Sign up</a>
+      <a href="{{ url_for('login') }}">Log in</a>
+    {% endif %}
     </div>
   </div>
 
-  <main>
+	<main>
     <br><br>
-    {% block content %}{% endblock %}
-  </main>
+		{% block content %}{% endblock %}
+	</main>
+
+  <!--
+  <div class="marquee">
+    <div class="marquee-text">
+      <h2>Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu Kuchu Muchu </h2>
+    </div>
+  </div>
+  -->
+
+  <!-- 
+    - #FOOTER
+  -->
 
   <footer class="footer">
+
     <div class="footer-top section">
       <div class="container">
+
         <div class="footer-brand">
+
           <a href="#" class="logo">
             <img src="{{ url_for('static', filename='images/km.png') }}" width="160" height="50" alt="Footcap logo">
           </a>
+
           <ul class="social-list">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-pinterest"></ion-icon>
-            </a>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
+
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+
+
+
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+
+
+
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+
+
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+
           </ul>
+
         </div>
+
         <div class="footer-link-box">
+
           <ul class="footer-list">
-            <p class="footer-list-title">Contact Us</p>
-            <address class="footer-link">
-              <ion-icon name="location"></ion-icon>
-              <span class="footer-link-text">2023 Grove Street, Ganton, Los Santos, United States</span>
-            </address>
-            <a href="tel:+923369042096" class="footer-link">
-              <ion-icon name="call"></ion-icon>
-              <span class="footer-link-text">+92 3369042096</span>
-            </a>
-            <a href="mailto:nocap@hotstuffmail.com" class="footer-link">
-              <ion-icon name="mail"></ion-icon>
-              <span class="footer-link-text">nocap@hotstuffmail.com</span>
-            </a>
+
+              <p class="footer-list-title">Contact Us</p>
+
+              <address class="footer-link">
+                <ion-icon name="location"></ion-icon>
+
+                <span class="footer-link-text">
+                  2751 S Parker Rd, Aurora, CO 80014, United States
+                </span>
+              </address>
+
+              <a href="tel:+557343673257" class="footer-link">
+                <ion-icon name="call"></ion-icon>
+
+                <span class="footer-link-text">+557343673257</span>
+              </a>
+
+              <a href="mailto:footcap@help.com" class="footer-link">
+                <ion-icon name="mail"></ion-icon>
+
+                <span class="footer-link-text">footcap@help.com</span>
+              </a>
+
           </ul>
+
           <div class="footer-list">
+
             <p class="footer-list-title">Newsletter</p>
+
             <p class="newsletter-text">
               Join our newsletter and stay ahead of the game.
             </p>
+
             <form action="" class="newsletter-form">
               <input type="email" name="email" required placeholder="Email Address" class="newsletter-input">
+
               <button type="submit" class="btn btn-primary">Subscribe</button>
             </form>
+
           </div>
+
         </div>
+
       </div>
     </div>
+
     <div class="footer-bottom">
       <div class="container">
+
         <p class="copyright">
-          &copy; 2023 <a href="#" class="copyright-link">Kuchu Muchu Inc.</a> - All Rights Reserved
+          &copy; 2023 <a href="#" class="copyright-link">Kucho Mucho Inc.</a> - All Rights Reserved
         </p>
+
       </div>
     </div>
+
   </footer>
 
-  {% block script %}
+
+ 
+  {% block script %} 
 
   <!-- 
     - custom js link
@@ -124,8 +179,9 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>-->
 
-  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+	<script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
   {% endblock %}
 </body>
-
 </html>

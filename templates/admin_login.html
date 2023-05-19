@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% block title %}Log in{% endblock %}
+{% block title %}Admin Log in{% endblock %}
 
 {% block content %}
-<br>
-<div class="form-container">
-  <h1>Admin</h1>
-  <form action="{{ url_for('admin_login') }}" method="POST">
-    <label for="admin_id">Admin ID:</label>
-    <input type="text" id="admin_id" name="admin_id" required>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <!-- add reCAPTCHA here -->
-    <button type="submit">Login</button>
-  </form>
-  {% if error %}
-  <p style="color: red">{{ error }}</p>
-  {% endif %}
-  <script src="https://www.google.com/recaptcha/api.js"></script>
-</div>
-<br>
-{% endblock %}
-
+  <br>
+  <div class="form-container">
+    <h1>Admin</h1>
+    <form action="{{ url_for('admin_login') }}" method="POST">
+      <label for="admin_id">Admin ID:</label>
+      <input type="text" id="admin_id" name="admin_id" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <!-- add reCAPTCHA here -->
+      <button type="submit">Login</button>
+    </form>
+    {% if error %}
+    <p style="color: red">{{ error }}</p>
+    {% endif %}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </div>
+  <br>
+  {% endblock %}
 </html>
+
