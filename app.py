@@ -1,17 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, flash,render_template,request,session, redirect, url_for, abort
-#from strgen import StringGenerator as SG
-from sqlalchemy import create_engine, event  
-from sqlalchemy import Column, String  
-from sqlalchemy.ext.declarative import declarative_base  
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import joinedload
+from flask import Flask, flash,render_template,request,session, redirect, url_for
 import uuid
 import logging
 from werkzeug.utils import secure_filename
 import os
 from dotenv import load_dotenv
-import requests
 import stripe
 from datetime import date
 import dash
@@ -31,9 +24,8 @@ conn = psycopg2.connect(
 
 #stripe_publishable_key = os.getenv('STRIPE_PUBLISHABLE_KEY')
 #stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
-stripe_public_key = <stripe_public_key>
-stripe.api_key = <stripe_private_key>
-
+# stripe_public_key =
+# stripe.api_key =
 
 
 app = Flask(__name__)
@@ -160,7 +152,7 @@ class Product(db.Model):
     price = db.Column(db.Integer)
     product_description = db.Column(db.String(30))
     unit_weight = db.Column(db.Integer)
-    supplier = db.Column(db.ForeignKey('supplier.suplier_id'))
+    supplier = db.Column(db.ForeignKey('supplier.supplier_id'))
     category = db.Column(db.ForeignKey('category.category_id'))
 
 class ProductView(db.Model):
@@ -217,6 +209,10 @@ class Supplier(db.Model):
 #set secret key for the app in order to use sessions 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
+
+@app.route("/<string:name>")
+def invalid(name):
+    return render_template('404.html')
 
 
 
@@ -297,22 +293,6 @@ def signup():
     return render_template('register.html', error = None)
 
 
-def getLoginDetails():
-    loggedIn = False
-    firstName = ''
-    noOfItems = 0
-
-    if 'username' in session:
-        loggedIn = True
-        usr = session['username']
-
-        # get the number of items in the cart for the current user
-        user = Customer.query.filter_by(loginid=usr).first()
-        if user:
-            cart = Cart.query.filter_by(customer_id=user.customer_id).all()
-            noOfItems = len(cart)
-
-    return loggedIn, firstName, noOfItems
 
 @app.route('/user_info/<login_id>')
 def user_info(login_id):
@@ -345,7 +325,7 @@ def productDescription():
 #     quantity = target.quantity
 #     product = Product.query.get(product_id)
 #     product.quantity_pu -= quantity
-
+#
 # # Register the trigger function to execute when a CartProduct object is added
 # event.listen(CartProduct, 'after_insert', update_product_quantity_on_cart_product_add)
 
@@ -372,12 +352,12 @@ def addToCart():
         if cart_product:
             cart_product.quantity += int(request.form['quantity'])
             cart.nop += int(request.form['quantity'])  
-            productData.quantity_pu -= int(request.form['quantity'])  
+            #productData.quantity_pu -= int(request.form['quantity'])
         else:
             cart_product = CartProduct(cart_id=cart.cart_id, product_id=product_id, quantity=int(request.form['quantity']))
             cart.nop += int(request.form['quantity'])
             db.session.add(cart_product)
-            productData.quantity_pu -= int(request.form['quantity'])
+            #productData.quantity_pu -= int(request.form['quantity'])
 
         # Update the total price
         product = Product.query.get(product_id)
@@ -718,8 +698,6 @@ def add_product():
         db.session.add(new_product)
         db.session.commit()
 
-        return redirect(url_for('admin'))
-
     return render_template('admin_dashboard.html')
 
 @app.route('/edit_product', methods=['GET', 'POST'])
@@ -736,8 +714,6 @@ def edit_product():
         product.price = request.form['new_price']
 
         db.session.commit()
-
-        return render_template('admin_dashboard.html')
 
     return render_template('admin_dashboard.html')
 
@@ -776,39 +752,41 @@ def analytics():
 # create Dash app
 dash_app = dash.Dash(__name__, server=app, url_base_pathname='/analytics/')
 
-# helper function to get product sales and revenue data
+
+#helper function to get product sales and revenue data
 def get_product_sales():
-    product_sales = []
-    for product in Product.query.all():
-        order_dates = []
-        quantity_sold = []
-        revenue = []
-        for order_date, sum_quantity, sum_price in db.session.query(Order.order_date, db.func.sum(OrderItem.quantity), db.func.sum(OrderItem.unit_price)).join(OrderItem).filter_by(product_id=product.product_id).group_by(Order.order_date):
-            order_dates.append(order_date)
-            quantity_sold.append(sum_quantity)
-            revenue.append(sum_price)
-        product_sales.append({'product_name': product.product_name, 'order_dates': order_dates, 'quantity_sold': quantity_sold, 'revenue': revenue})
-    return product_sales
+    with app.app_context():
+        product_sales = []
+        for product in Product.query.all():
+            order_dates = []
+            quantity_sold = []
+            revenue = []
+            for order_date, sum_quantity, sum_price in db.session.query(Order.order_date, db.func.sum(OrderItem.quantity), db.func.sum(OrderItem.unit_price)).join(OrderItem).filter_by(product_id=product.product_id).group_by(Order.order_date):
+                order_dates.append(order_date)
+                quantity_sold.append(sum_quantity)
+                revenue.append(sum_price)
+            product_sales.append({'product_name': product.product_name, 'order_dates': order_dates, 'quantity_sold': quantity_sold, 'revenue': revenue})
+        return product_sales
 
     # helper function to get total revenue by date
 def get_revenue_by_date():
-    revenue_by_date = []
-    for order_date, total_revenue in db.session.query(Order.order_date, db.func.sum(OrderItem.unit_price * OrderItem.quantity)).join(OrderItem).group_by(Order.order_date):
-        revenue_by_date.append({'order_date': order_date, 'total_revenue': total_revenue})
-    return revenue_by_date
+    with app.app_context():
+        revenue_by_date = []
+        for order_date, total_revenue in db.session.query(Order.order_date, db.func.sum(OrderItem.unit_price * OrderItem.quantity)).join(OrderItem).group_by(Order.order_date):
+            revenue_by_date.append({'order_date': order_date, 'total_revenue': total_revenue})
+        return revenue_by_date
 
 # define Dash layout
-dash_app.layout = html.Div(children=[    
+dash_app.layout = html.Div(children=[
     html.H1(children='Product Sales'),
     html.H2(children='Quantity of each Product sold'),
-    dcc.Graph(        
-        id='product-sales-quantity-graph',        
-        figure={            
-            'data': [                
-                go.Scatter(                    
+    dcc.Graph(
+        id='product-sales-quantity-graph',
+        figure={
+            'data': [
+                go.Scatter(
                     x=product_sales['order_dates'],
                     y=product_sales['quantity_sold'],
-                    mode='lines',
                     name=product_sales['product_name']
                 )
                 for product_sales in get_product_sales()
@@ -821,14 +799,13 @@ dash_app.layout = html.Div(children=[
         }
     ),
     html.H2(children='Revenue generated by each Product'),
-    dcc.Graph(        
-        id='product-sales-revenue-graph',        
-        figure={            
-            'data': [                
-                go.Scatter(                    
+    dcc.Graph(
+        id='product-sales-revenue-graph',
+        figure={
+            'data': [
+                go.Scatter(
                     x=product_sales['order_dates'],
                     y=product_sales['revenue'],
-                    mode='lines',
                     name=product_sales['product_name']
                 )
                 for product_sales in get_product_sales()

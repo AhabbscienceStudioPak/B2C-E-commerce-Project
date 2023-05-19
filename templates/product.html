@@ -24,7 +24,7 @@
         {% endif %}
         <div class="form-group">
           <form method="POST" action="{{ url_for('addToWishlist', productId=productdata.product_id) }}">
-            <button type="submit" class="rightbutton">Wishlist</button>
+            <button type="submit">Wishlist</button>
           </form>
         </div>
             <form method="POST" action="{{ url_for('addToCart', productId=productdata.product_id) }}">

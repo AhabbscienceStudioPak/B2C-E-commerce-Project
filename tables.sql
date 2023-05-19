@@ -168,3 +168,27 @@ VALUES ('10010', 10, 'Blue shirt','blueshirt.JPG', 5,  800, 'A good shirt mister
 INSERT INTO product (product_id, quantity_pu, product_name,product_image, unit_weight, price, product_description, supplier, category)
 VALUES ('10020', 10, 'Car','car.JPEG', 5,  40, 'Toy car', 'ABC123', 'C003'),
 ('10022', 10, 'Teddy bear','bear.JPEG', 10,  200, 'the OG BEAR', 'ABC123', 'C003');
+
+
+CREATE VIEW myview AS
+(
+	SELECT p.product_name,p.quantity_pu, s.supplier_id, s.first_name,s.last_name
+	FROM product p JOIN supplier s 
+	ON p.supplier_id = s.supplier_id
+)
+
+CREATE OR REPLACE FUNCTION count_it()
+RETURNS INTEGER
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+pcount int;
+BEGIN
+SELECT count(*) INTO pcount FROM product;
+RETURN pcount;
+END;
+$$;
+
+INSERT INTO admin(admin_id,first_name,last_name,loginid)
+VALUES('A001','SOHAIB','NASIR','A001');
