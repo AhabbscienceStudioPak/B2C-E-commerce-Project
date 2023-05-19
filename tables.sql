@@ -174,7 +174,7 @@ CREATE VIEW myview AS
 (
 	SELECT p.product_name,p.quantity_pu, s.supplier_id, s.first_name,s.last_name
 	FROM product p JOIN supplier s 
-	ON p.supplier_id = s.supplier_id
+	ON p.supplier = s.supplier_id
 )
 
 CREATE OR REPLACE FUNCTION count_it()
@@ -190,5 +190,5 @@ RETURN pcount;
 END;
 $$;
 
-INSERT INTO admin(admin_id,first_name,last_name,loginid)
+INSERT INTO admin(admin_id,first_name,last_name,login_id)
 VALUES('A001','SOHAIB','NASIR','A001');
