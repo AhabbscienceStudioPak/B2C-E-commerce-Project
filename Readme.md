@@ -35,6 +35,8 @@ pip install -r requirements.txt
 ```shell
 python main.py
 ```
+## Schema
+<img src = "ERD.png">
 
 ## Team Members
 - 2021327 M. Ahabb Sheraz
