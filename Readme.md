@@ -14,7 +14,7 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 - HTML/CSS
 - JavaScript
 
-- ## Installation
+## Installation
 
 1. Clone the repository:
 ```shell
