@@ -21,12 +21,17 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 git clone https://github.com/AhabbscienceStudioPak/B2C-E-commerce-Project.git
 ```
 
-2. Install the required dependencies:
+2. Change to the project directory:
+```shell
+cd B2C-E-commerce-Project
+```
+
+3. Install the required dependencies:
 ```shell
 pip install -r requirements.txt
 ```
 
-3. Run main.py:
+4. Run main.py:
 ```shell
 python main.py
 ```
