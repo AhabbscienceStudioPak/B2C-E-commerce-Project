@@ -371,7 +371,7 @@ def success():
     db.session.commit()
     
     # Create an Aboutorder entry
-    order = Order(customer_id=cust_id, order_date = date.today(), shipper_id = 'S123', address = address)
+    order = Order(customer_id=cust_id, order_date = date.today(), shipper_id = 123, address = address)
     db.session.add(order)
     db.session.commit()
     
