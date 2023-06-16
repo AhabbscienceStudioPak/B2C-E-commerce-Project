@@ -14,6 +14,23 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 - HTML/CSS
 - JavaScript
 
+- ## Installation
+
+1. Clone the repository:
+```shell
+git clone https://github.com/AhabbscienceStudioPak/B2C-E-commerce-Project.git
+```
+
+2. Install the required dependencies:
+```shell
+pip install -r requirements.txt
+```
+
+3. Run main.py:
+```shell
+python main.py
+```
+
 ## Team Members
 - 2021327 M. Ahabb Sheraz
 - 2021510 Nauman Asif
