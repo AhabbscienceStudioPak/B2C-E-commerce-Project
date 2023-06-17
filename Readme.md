@@ -31,7 +31,16 @@ cd B2C-E-commerce-Project
 pip install -r requirements.txt
 ```
 
-4. Run main.py:
+4. Set up the environment variables:
+
+Create a .env file in the project root directory.
+Add the following environment variables and their respective values to the .env file:
+```text
+STRIPE_PUBLISHABLE_KEY = your-stripe-publishable-key
+STRIPE_SECRET_KEY = your-stripe-secret-key
+```
+
+5. Run the application:
 ```shell
 python main.py
 ```
