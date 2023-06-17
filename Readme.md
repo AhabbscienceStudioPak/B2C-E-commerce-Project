@@ -13,6 +13,7 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 - SQLAlchemy ORM
 - HTML/CSS
 - JavaScript
+- GSAP
 
 ## Installation
 
