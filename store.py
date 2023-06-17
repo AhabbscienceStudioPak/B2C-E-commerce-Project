@@ -17,6 +17,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
 @app.route("/<string:name>")
 def invalid(name):
