@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Werkzeug
+python-dotenv
+stripe
+dash
+dash-core-components
+dash-html-components
+plotly
