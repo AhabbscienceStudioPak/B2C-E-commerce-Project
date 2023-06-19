@@ -1,4 +1,4 @@
-# B2C E-commerce Project
+aa# B2C E-commerce Project
 ![](https://img.shields.io/github/stars/AhabbscienceStudioPak/B2C-E-commerce-Project.svg) 
 ![](https://img.shields.io/github/forks/AhabbscienceStudioPak/B2C-E-commerce-Project.svg) 
 ![](https://img.shields.io/github/issues/AhabbscienceStudioPak/B2C-E-commerce-Project.svg)
@@ -14,17 +14,19 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 - HTML/CSS
 - JavaScript
 - GSAP
+- Plotly Dash
 
 ## File Structure
 1. main.py:
 This Python file is the primary script that starts the localhost and thus the application itself.
 2. views.py:
-This Python file contains the code for routing the app to different references and also the rendering of HTML files. This also contains the interactions with the database.
-3. models.py:
+This Python file contains the code for routing the app to different references and also the rendering of HTML files of the store. This also contains the interactions with the database.
+3. admin.py (beta): This file contains the admin portal. Our admin panel allows administrators to efficiently manage the product inventory. They should be able to add new products, update existing product information, and remove products that are no longer available. The admin panel also provides analytics data such as product performance and revenue to help me monitor the success of different products and make data-driven decisions. 
+4. models.py:
 This file contains the classes of all the relational models of our database.
-4. static:
+5. static:
 This folder contains all the static files such as images, JavaScript, and CSS.
-5. templates:
+6. templates:
 This directory contains all the HTML files that need to be rendered.
 
 ## Installation
