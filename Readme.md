@@ -16,15 +16,15 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 - GSAP
 
 ## File Structure
-1. main.py
+1. main.py:
 This Python file is the primary script that starts the localhost and thus the application itself.
-2. views.py
+2. views.py:
 This Python file contains the code for routing the app to different references and also the rendering of HTML files. This also contains the interactions with the database.
-3. models.py
+3. models.py:
 This file contains the classes of all the relational models of our database.
-4. static
+4. static:
 This folder contains all the static files such as images, JavaScript, and CSS.
-5. templates
+5. templates:
 This directory contains all the HTML files that need to be rendered.
 
 ## Installation
