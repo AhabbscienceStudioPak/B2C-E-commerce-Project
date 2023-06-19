@@ -45,6 +45,18 @@ STRIPE_SECRET_KEY = your-stripe-secret-key
 ```shell
 python main.py
 ```
+## File Structure
+1. main.py
+This Python file is the primary script that starts the localhost and thus the application itself.
+2. views.py
+This Python file contains the code for routing the app to different references and also the rendering of HTML files. This also contains the interactions with the database.
+3. models.py
+This file contains the classes of all the relational models of our database.
+4. static
+This folder contains all the static files such as images, JavaScript, and CSS.
+5. templates
+This directory contains all the HTML files that need to be rendered.
+
 ## Schema
 <img src = "ERD.png">
 
