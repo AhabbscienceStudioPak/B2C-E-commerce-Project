@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 Create a .env file in the project root directory.
 Add the following environment variables and their respective values to the .env file:
-```text
+```env
 STRIPE_PUBLISHABLE_KEY = your-stripe-publishable-key
 STRIPE_SECRET_KEY = your-stripe-secret-key
 ```
