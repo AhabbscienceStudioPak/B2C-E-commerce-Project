@@ -24,7 +24,7 @@ Our project involves the development of a B2C e-commerce website using Python Fl
 This Python file is the primary script that starts the localhost and thus the application itself.
 2. views.py:
 This Python file contains the code for routing the app to different references and also the rendering of HTML files of the store. This also contains the interactions with the database.
-3. admin.py (beta): This file contains the admin portal. Our admin panel allows administrators to efficiently manage the product inventory. They should be able to add new products, update existing product information, and remove products that are no longer available. The admin panel also provides analytics data such as product performance and revenue to help me monitor the success of different products and make data-driven decisions. 
+3. admin.py (beta): This file contains the admin portal. Our admin panel allows administrators to efficiently manage the product inventory. They should be able to add new products, update existing product information, and remove products that are no longer available. The admin panel also provides analytics data such as product performance and revenue to help them monitor the success of different products and make data-driven decisions. 
 4. models.py:
 This file contains the classes of all the relational models of our database.
 5. static:
